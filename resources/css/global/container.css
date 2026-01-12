@@ -1,0 +1,9 @@
+.app {
+    container-type: inline-size;
+    min-block-size: 100dvh;
+    background-color: var(--color-background);
+    position: relative;
+    transition-property: color, background-color;
+    transition-duration: var(--base-transition-duration);
+    transition-timing-function: var(--base-transition-timing-function);
+}

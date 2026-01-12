@@ -1,0 +1,19 @@
+:root {
+    color-scheme: dark;
+
+    --color-background: var(--dark-jungle-green-color);
+    --color-background-input: var(--dark-jungle-green-color);
+    --color-background-input-checked: var(--desert-storm-color);
+    --color-background-image-input-checked: url("../images/icons/icon-check-dark.svg");
+    --color-boxshadow-input: var(--dark-jungle-green-color);
+    --color-border: var(--desert-storm-color);
+    --color-border-active: var(--white-color);
+    --color-base-font-text: var(--desert-storm-color);
+    --color-base-font-link: var(--desert-storm-color);
+    --color-base-font-text-focus: var(--dark-jungle-green-color);
+    --color-background-block: var(--dark-jungle-green-color);
+    --color-border-input: var(--desert-storm-color);
+    --color-border-button-text: var(--desert-storm-color);
+    --color-background-image-cancel-button: url("../images/icons/icon-cross-dark.svg");
+    --color-paginator-disable: hsl(from var(--gray-goose-color) h s l / 0.5);
+}

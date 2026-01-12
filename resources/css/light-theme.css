@@ -1,0 +1,19 @@
+:root {
+    color-scheme: light;
+
+    --color-background: var(--desert-storm-color);
+    --color-background-input: var(--white-color);
+    --color-background-input-checked: var(--purply-blue-color);
+    --color-background-image-input-checked: url("../images/icons/icon-check-light.svg");
+    --color-boxshadow-input: var(--white-color);
+    --color-border: var(--purply-blue-color);
+    --color-border-active: var(--iris-color);
+    --color-base-font-text: var(--dark-jungle-green-color);
+    --color-base-font-link: var(--dark-jungle-green-color);
+    --color-base-font-text-focus: var(--dark-jungle-green-color);
+    --color-background-block: var(--desert-storm-color);
+    --color-border-input: var(--purply-blue-color);
+    --color-border-button-text: var(--purply-blue-color);
+    --color-background-image-cancel-button: url("../images/icons/icon-cross-light.svg");
+    --color-paginator-disable: var(--gray-goose-color);
+}

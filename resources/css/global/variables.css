@@ -1,0 +1,63 @@
+:root {
+    color-scheme: light dark;
+
+    /* BASE COLOR */
+    /*#FFFFFF*/
+    --white-color: hsl(0, 0%, 100%);
+
+    /*#F7F7F7*/
+    --desert-storm-color: hsl(0, 0%, 97%);
+
+    /*#CDCDCD*/
+    --pastel-grey-color: hsl(0, 0%, 80%);
+
+    /*#d0d0d0*/
+    --gray-goose-color: hsl(0, 0%, 82%);
+
+    /*#6C63FF*/
+    --purply-blue-color: hsl(243, 100%, 69%);
+
+    /*#534cc2*/
+    --iris-color: hsl(244, 49%, 53%);
+
+    /*#3f37a3*/
+    --blueberry-color: hsl(244, 50%, 43%);
+
+    /*#8340bc*/
+    --fuchsia-blue-color: hsl(272, 49%, 49%);
+
+    /*#E50000*/
+    --rosso-corsa-color: hsl(0, 100%, 45%);
+
+    /*#b30000*/
+    --guardsman-red-color: hsl(0, 100%, 35%);
+
+    /*#252525*/
+    --dark-jungle-green-color: hsl(0, 0%, 15%);
+
+
+
+    /* FONT */
+
+    --font-reduction-coefficient: 0.412636vw;
+
+    /* font text */
+    --base-font-family: "Montserrat";
+    --base-font-size: 1.25rem;
+    --base-font-line-height: 1.5;
+    --base-font-color: var(--dark-jungle-green-color);
+
+    /* font title */
+    --title-lv1-font-size: 1.625rem;
+
+
+    /* MAX WIDTH CONTAINER */
+    --max-width-container: 46.875rem;
+
+    /* BORDER */
+    --base-border-radius: 0.25rem;
+
+    /* TRANSITIONS */
+    --base-transition-timing-function: cubic-bezier(.4,0,.2,1);
+    --base-transition-duration: 0.15s;
+}
