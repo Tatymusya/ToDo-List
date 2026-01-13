@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const appUrl = import.meta.env.VITE_APP_URL;
-const appPort = import.meta.env.VITE_APP_PORT;
+const appUrl = import.meta.env.VITE_API_URL;
+const appPort = import.meta.env.VITE_API_PORT;
 const apiPrefix = import.meta.env.VITE_API_PREFIX;
 const apiVersion = import.meta.env.VITE_API_VERSION;
 
