@@ -41,7 +41,6 @@
     import FormTextRecord from '@js/components/FormTextRecord.vue';
     import { router } from "@inertiajs/vue3";
     import { ref } from 'vue';
-    import axios from 'axios';
     import todosAPI from '@js/services/todos';
 
     const props = defineProps(['todos', 'isSearchResult']);
