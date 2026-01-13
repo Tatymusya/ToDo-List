@@ -105,21 +105,33 @@
     }
 
     const addTodoNote = async () => {
-        const url = !noteId.value ? `api/v1/todos` : `api/v1/todos/${noteId.value}`;
-        const method = !noteId.value ? 'post' : 'patch';
-        const response = await axios({
-            method: method,
-            url: url,
-            headers: {"Access-Control-Allow-Origin": "*"},
-            data: {
-                title: titleV.value,
-                id: noteId.value
-            }
-        });
 
+        if (!noteId.value) {
+            const data = new FormData();
+            data.append('title', titleV.value);
+            const response = await todosAPI.createTodo(data);
+            closeForm();
+            const message = response?.data?.message;
+            await messagesResponse.value?.addMessages({ text: message, type: 'success' });
+
+            router.reload({ only: ['todos'] },
+                {
+                    onFinish: () => messagesResponse.value?.removeMessage(),
+                }
+            );
+
+            return;
+        }
+
+
+        const data = new FormData();
+        data.append('id', noteId.value);
+        data.append('title', titleV.value);
+        const response2 = await todosAPI.updateTodo(noteId.value, data);
         closeForm();
-        const message = response?.data?.message;
-        await messagesResponse.value?.addMessages({ text: message, type: 'success' });
+        const message2 = response2?.data?.message;
+        await messagesResponse.value?.addMessages({ text: message2, type: 'success' });
+
         router.reload({ only: ['todos'] },
             {
                 onFinish: () => messagesResponse.value?.removeMessage(),
