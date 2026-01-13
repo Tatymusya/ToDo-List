@@ -24,6 +24,7 @@
             :id="noteId"
             v-model="titleV"
             @add-todo-note="addTodoNote"
+            @update-todo-note="updateTodoNote"
             @close-form="closeForm"
         />
         <AppMessages ref="messagesResponse" />
@@ -56,31 +57,33 @@
         noteId.value = typeof id !== 'number' ? null : id;
     }
 
-    const deleteTodoById = async (id) => {
-        const response = await todosAPI.deleteTodo(id);
+    const showMessageWhenSuccess = async (message) => {
+        return await messagesResponse.value?.addMessages({ text: message, type: 'success' });
+    }
 
-        const message = response?.data?.message;
-        await messagesResponse.value?.addMessages({ text: message, type: 'success' });
-
+    const reloadPageWhenSuccess = async () => {
         router.reload({ only: ['todos'] },
             {
                 onFinish: () => messagesResponse.value?.removeMessage(),
             }
         );
+    }
+
+    const deleteTodoById = async (id) => {
+        const response = await todosAPI.deleteTodo(id);
+
+        showMessageWhenSuccess(response?.data?.message);
+
+        reloadPageWhenSuccess();
 
     }
 
     const updateCompleteById = async (id) => {
         const response = await todosAPI.updateTodo(id);
 
-        const message = response?.data?.message;
-        await messagesResponse.value?.addMessages({ text: message, type: 'success' });
+        showMessageWhenSuccess(response?.data?.message);
 
-        router.reload({ only: ['todos'] },
-            {
-                onFinish: () => messagesResponse.value?.removeMessage(),
-            }
-        );
+        reloadPageWhenSuccess();
     }
 
     const closeForm = () => {
@@ -105,38 +108,25 @@
     }
 
     const addTodoNote = async () => {
+        const data = new FormData();
+        data.append('title', titleV.value);
+        const response = await todosAPI.createTodo(data);
+        closeForm();
+        showMessageWhenSuccess(response?.data?.message);
 
-        if (!noteId.value) {
-            const data = new FormData();
-            data.append('title', titleV.value);
-            const response = await todosAPI.createTodo(data);
-            closeForm();
-            const message = response?.data?.message;
-            await messagesResponse.value?.addMessages({ text: message, type: 'success' });
+        reloadPageWhenSuccess();
 
-            router.reload({ only: ['todos'] },
-                {
-                    onFinish: () => messagesResponse.value?.removeMessage(),
-                }
-            );
+    }
 
-            return;
-        }
-
-
+    const updateTodoNote = async () => {
         const data = new FormData();
         data.append('id', noteId.value);
         data.append('title', titleV.value);
-        const response2 = await todosAPI.updateTodo(noteId.value, data);
+        const response = await todosAPI.updateTodo(noteId.value, data);
         closeForm();
-        const message2 = response2?.data?.message;
-        await messagesResponse.value?.addMessages({ text: message2, type: 'success' });
+        showMessageWhenSuccess(response?.data?.message);
 
-        router.reload({ only: ['todos'] },
-            {
-                onFinish: () => messagesResponse.value?.removeMessage(),
-            }
-        );
+        reloadPageWhenSuccess();
     }
 </script>
 

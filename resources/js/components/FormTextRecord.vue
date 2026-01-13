@@ -8,12 +8,20 @@
         <template #controls>
             <AppButton :isDefaultStyle="false" :isDefaultOnlyBorderStyle="true" :hasText="true" @click="$emit('closeForm')">Отменить</AppButton>
             <AppButton
+                v-if="!id"
                 :hasText="true"
                 type="submit"
                 @click="$emit('addTodoNote')"
             >
-                <span v-if="id">Обновить</span>
-                <span v-else>Добавить</span>
+                <span>Добавить</span>
+            </AppButton>
+            <AppButton
+                v-if="id"
+                :hasText="true"
+                type="submit"
+                @click="$emit('updateTodoNote')"
+            >
+                <span>Обновить</span>
             </AppButton>
         </template>
     </AppModal>
@@ -26,7 +34,7 @@
 
     const title = defineModel();
     const props = defineProps(['id', 'errors', 'isEditTodo']);
-    const emit = defineEmits(['addTodoNote', 'closeForm']);
+    const emit = defineEmits(['addTodoNote', 'closeForm', 'updateTodoNote']);
 
     defineExpose({
         title
