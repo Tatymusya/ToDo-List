@@ -3,7 +3,7 @@
     <AppMain>
         <AppBreadcrumbs :count="countTodos" />
         <AppEmpty v-if="countTodos === 0" :message="'Записи не найдены'" />
-        <ToDoList :todos="todos" :isSearchResult="isSearchResult" />
+        <ToDoList :todos="todos" />
     </AppMain>
 </template>
 
@@ -15,6 +15,5 @@
     import AppEmpty from '@js/components/layouts/AppEmptyContainer.vue';
 
     const props = defineProps(['todos', 'countTodos']);
-    const isSearchResult = true;
 
 </script>

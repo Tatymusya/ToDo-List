@@ -21,7 +21,6 @@
         </AppButton>
         <AppPagination v-if="todos?.meta?.total && todos?.meta?.total > 5" :links="todos.links" :meta="todos.meta" />
         <FormTextRecord
-            v-if="!isSearchResult"
             :id="noteId"
             v-model="titleV"
             @add-todo-note="addTodoNote"
@@ -42,6 +41,7 @@
     import { router } from "@inertiajs/vue3";
     import { ref } from 'vue';
     import axios from 'axios';
+    import todosAPI from '@js/services/todos';
 
     const props = defineProps(['todos', 'isSearchResult']);
     const messagesResponse = ref(null);
@@ -57,11 +57,7 @@
     }
 
     const deleteTodoById = async (id) => {
-        const url = `api/v1/todos/${id}`;
-        const response = await axios({
-            method: 'delete',
-            url: url,
-        });
+        const response = await todosAPI.deleteTodo(id);
 
         const message = response?.data?.message;
         await messagesResponse.value?.addMessages({ text: message, type: 'success' });
@@ -75,11 +71,7 @@
     }
 
     const updateCompleteById = async (id) => {
-        const url = `api/v1/todos/${id}`;
-        const response = await axios({
-            method: 'patch',
-            url: url,
-        });
+        const response = await todosAPI.updateTodo(id);
 
         const message = response?.data?.message;
         await messagesResponse.value?.addMessages({ text: message, type: 'success' });
