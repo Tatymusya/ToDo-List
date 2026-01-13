@@ -18,7 +18,7 @@ class TodoResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'details' => $this->details,
+            'description' => $this->description,
             'completed' => $this->completed,
             'created_at' => Carbon::parse($this->created_at)->format('d.m.Y'),
             'updated_at' => Carbon::parse($this->updated_at)->format('d.m.Y'),
