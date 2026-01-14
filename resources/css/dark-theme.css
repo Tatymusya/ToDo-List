@@ -16,4 +16,10 @@
     --color-border-button-text: var(--desert-storm-color);
     --color-background-image-cancel-button: url("../images/icons/icon-cross-dark.svg");
     --color-paginator-disable: hsl(from var(--gray-goose-color) h s l / 0.5);
+    --color-background-table: var(--dark-jungle-green-color);
+    --color-border-table: var(--desert-storm-color);
+    --color-background-table-cell: var(--dark-jungle-green-color);
+    --color-background-table-cell-sel-def: hsl(from var(--solitude-color) h s l / 0.5);
+    --color-background-table-cell-sel-red: hsl(from var(--solitude-color) h s l / 0.5);
+    --color-background-table-cell-sel-green: hsl(from var(--misty-rose-color) h s l / 0.5);
 }

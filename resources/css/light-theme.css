@@ -16,4 +16,10 @@
     --color-border-button-text: var(--purply-blue-color);
     --color-background-image-cancel-button: url("../images/icons/icon-cross-light.svg");
     --color-paginator-disable: var(--gray-goose-color);
+    --color-background-table: var(--desert-storm-color);
+    --color-border-table: var(--white-color);
+    --color-background-table-cell: var(--desert-storm-color);
+    --color-background-table-cell-sel-def: var(--solitude-color);
+    --color-background-table-cell-sel-red: var(--lavender-blush-color);
+    --color-background-table-cell-sel-green: var(--misty-rose-color);
 }
