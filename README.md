@@ -1,6 +1,7 @@
 ## About Todo-list
 
 <p align="center"><img width="910" height="611" alt="2026-01-15_12-27-33" src="https://github.com/user-attachments/assets/f1e4a343-748c-4f2b-895b-7e2225ddde25" /></p>
+<p align="center"><img width="976" height="623" alt="2026-01-15_12-44-16" src="https://github.com/user-attachments/assets/1fe5d8ae-abfa-4f35-849f-d5b9fd284ea3" /></p>
 
 ## Laravel, Inertia and Vue 3 Todo-list App
 
