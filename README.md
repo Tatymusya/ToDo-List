@@ -14,6 +14,15 @@ php artisan key:generate
 
 cp .env.example .env
 
+### ENV config:
+Add database to .env
+
+Add the necessary env values; database, app name, app url etc
+
+Create database tables and run seeder.
+
+php artisan migarate --seed
+
 ### build front
 
 npm install npm run watch for development or run npm run prod to build prod assets
