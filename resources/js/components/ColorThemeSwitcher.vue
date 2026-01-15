@@ -9,9 +9,9 @@
     import AppButton from '@js/components/ui/AppButton.vue';
     import IconMoon from '@/images/icons/icon-moon.svg?component';
     import IconSun from '@/images/icons/icon-sun.svg?component';
-    import { computed } from 'vue';
+    import { computed, ref } from 'vue';
 
-    let currentTheme = 'Light';
+    let currentTheme = ref('Light');
     const props = defineProps(['hiddenText']);
 
     const darkThemeStyle = computed(() => {
@@ -22,11 +22,11 @@
 
     const toggleTheme = () => {
         let darkThemeStyleValue = darkThemeStyle.value;
-        if (currentTheme === 'Light') {
-            currentTheme = 'Dark';
+        if (currentTheme.value === 'Light') {
+            currentTheme.value = 'Dark';
             darkThemeStyleValue.media = 'all';
         } else {
-            currentTheme = 'Light';
+            currentTheme.value = 'Light';
             darkThemeStyleValue.media = '(prefers-color-scheme: dark)';
         }
     }
