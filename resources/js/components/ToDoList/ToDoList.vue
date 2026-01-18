@@ -76,8 +76,7 @@
 
             reloadPageWhenSuccess();
         } catch(e) {
-            const errorMessage = `Задача ${e?.message}, обновите страницу!`;
-            showMessage(errorMessage, true);
+            showMessage(e?.message, true);
         }
 
     }
