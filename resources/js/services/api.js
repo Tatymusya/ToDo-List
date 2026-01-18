@@ -1,4 +1,5 @@
 import axios from 'axios';
+import ERROR_MESSAGES from '@js/services/customErrors.js';
 
 const appUrl = import.meta.env.VITE_API_URL;
 const appPort = import.meta.env.VITE_API_PORT;
@@ -16,5 +17,27 @@ const baseAPIURL = () => {
 const instance = axios.create({
     baseURL: baseAPIURL(),
 });
+
+instance.interceptors.response.use(
+    (response) => response,
+    (error) => {
+        let message = ERROR_MESSAGES.GENERIC_ERROR;
+
+        if (error.response) {
+            const { status, data } = error.response;
+
+            if (data && data.message) {
+                message = data.message;
+            } else {
+                message = ERROR_MESSAGES[status] || ERROR_MESSAGES.GENERIC_ERROR;
+            }
+        } else {
+            message = ERROR_MESSAGES.NETWORK_ERROR;
+        }
+
+        console.warn(error);
+        return Promise.reject(new Error(message));
+    }
+);
 
 export default instance;

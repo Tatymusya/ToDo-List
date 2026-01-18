@@ -56,8 +56,8 @@
         noteId.value = typeof id !== 'number' ? null : id;
     }
 
-    const showMessageWhenSuccess = async (message) => {
-        return await messagesResponse.value?.addMessages({ text: message, type: 'success' });
+    const showMessage = async (message, hasError = false) => {
+        return await messagesResponse.value?.addMessages({ text: message, type: 'success' }, hasError);
     }
 
     const reloadPageWhenSuccess = async () => {
@@ -69,20 +69,29 @@
     }
 
     const deleteTodoById = async (id) => {
-        const response = await todosAPI.deleteTodo(id);
+        try {
+            const response = await todosAPI.deleteTodo(id);
 
-        showMessageWhenSuccess(response?.data?.message);
+            showMessage(response?.data?.message);
 
-        reloadPageWhenSuccess();
+            reloadPageWhenSuccess();
+        } catch(e) {
+            const errorMessage = `Задача ${e?.message}, обновите страницу!`;
+            showMessage(errorMessage, true);
+        }
 
     }
 
     const updateCompleteById = async (id) => {
-        const response = await todosAPI.updateTodo(id);
+        try {
+            const response = await todosAPI.updateTodo(id);
 
-        showMessageWhenSuccess(response?.data?.message);
+            showMessage(response?.data?.message);
 
-        reloadPageWhenSuccess();
+            reloadPageWhenSuccess();
+        } catch(e) {
+            showMessage(e?.message, true);
+        }
     }
 
     const closeForm = () => {
@@ -107,25 +116,33 @@
     }
 
     const addTodoNote = async () => {
-        const data = new FormData();
-        data.append('title', titleV.value);
-        const response = await todosAPI.createTodo(data);
-        closeForm();
-        showMessageWhenSuccess(response?.data?.message);
+        try {
+            const data = new FormData();
+            data.append('title', titleV.value);
+            const response = await todosAPI.createTodo(data);
+            closeForm();
+            showMessage(response?.data?.message);
 
-        reloadPageWhenSuccess();
+            reloadPageWhenSuccess();
+        } catch(e) {
+            showMessage(e?.message, true);
+        }
 
     }
 
     const updateTodoNote = async () => {
-        const data = new FormData();
-        data.append('id', noteId.value);
-        data.append('title', titleV.value);
-        const response = await todosAPI.updateTodo(noteId.value, data);
-        closeForm();
-        showMessageWhenSuccess(response?.data?.message);
+        try {
+            const data = new FormData();
+            data.append('id', noteId.value);
+            data.append('title', titleV.value);
+            const response = await todosAPI.updateTodo(noteId.value, data);
+            closeForm();
+            showMessage(response?.data?.message);
 
-        reloadPageWhenSuccess();
+            reloadPageWhenSuccess();
+        } catch(e) {
+            showMessage(e?.message, true);
+        }
     }
 </script>
 

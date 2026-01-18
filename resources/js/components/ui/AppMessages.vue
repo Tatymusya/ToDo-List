@@ -1,10 +1,19 @@
 <template>
     <teleport to="body">
-        <div class="app-messages">
+        <div
+            class="app-messages"
+            :class="{
+                'app-messages--default': !errVal,
+                'app-messages--error': errVal,
+            }"
+        >
             <div
                 v-for="msg in messages"
                 :key="msg.id"
-                :class="['message', msg.type]"
+                class="app-messages__content"
+                :class="{
+                    'message': msg.type,
+                }"
             >
                 <span>{{ msg.text }}</span>
             </div>
@@ -16,17 +25,21 @@
     import { uuid } from 'vue-uuid';
     import { ref } from 'vue';
 
+    const errVal = ref(false);
     const messages = ref([]);
     const ids = ref(uuid.v1());
 
-    const addMessages = async (message) => {
+    const addMessages = async (message, err = false) => {
         messages.value.push({
             ...message,
             id: ids.value
         });
 
+        errVal.value = err;
+
         setTimeout(() => {
             removeMessage(ids.value);
+            errVal.value = false;
         }, 3000);
     }
 
@@ -43,7 +56,8 @@
     defineExpose({
         addMessages,
         removeMessage,
-        messages
+        messages,
+        errVal
     });
 
 </script>
@@ -56,12 +70,12 @@
         padding-block: 0.5rem;
         padding-inline: 0.5rem;
         background-color: var(--color-background);
-        border: 1px solid var(--rosso-corsa-color);
+        border: 1px solid var(--islamic-green-color);
         border-radius: var(--base-border-radius);
         justify-content: center;
         align-items: center;
         font-size: 0.8rem;
-        color: var(--guardsman-red-color);
+        color: var(--islamic-green-color);
         position: fixed;
         inset-block-start: 0;
         inset-inline-start: 50%;
@@ -71,6 +85,20 @@
         transition-duration: 0.4s;
         transition-timing-function: var(--base-transition-timing-function);
         opacity: 1;
+
+        .app-messages__content {
+            text-align: center;
+        }
+
+        &.app-messages--default {
+            border: 1px solid var(--islamic-green-color);
+            color: var(--islamic-green-color);
+        }
+
+        &.app-messages--error {
+            border: 1px solid var(--guardsman-red-color);
+            color: var(--rosso-corsa-color);
+        }
 
         @starting-style {
             inset-block-start: -4rem;
